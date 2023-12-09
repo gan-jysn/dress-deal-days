@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class CharacterController : MonoBehaviour {
+public class MovementController : MonoBehaviour {
     [SerializeField] bool isControlsEnabled = true;
+    [SerializeField] float movementSpeed = 5f;
 
     private Rigidbody2D rb;
     private bool isRunEnabled = false;
     private Vector2 moveVector = Vector2.zero;
 
     public bool IsControlsEnabled { get { return isControlsEnabled; } }
+    public float MovementSpeed { get { return movementSpeed; } }
+    public Vector2 MoveVector { get { return moveVector; } }
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -20,6 +23,14 @@ public class CharacterController : MonoBehaviour {
 
     private void OnDestroy() {
         RemoveInputEventCallbacks();
+    }
+
+    private void FixedUpdate() {
+        if (!isControlsEnabled)
+            return;
+
+        //Movement
+        rb.MovePosition(rb.position + moveVector * movementSpeed * Time.fixedDeltaTime);
     }
 
     private void AddInputEventCallbacks() {
