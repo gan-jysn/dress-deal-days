@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class SceneHandler : MonoBehaviour {
     public static SceneHandler Instance;
 
-    [SerializeField] private bool hasDelay = false;
-    [SerializeField] private float delay = 0f;
+    [SerializeField] bool hasDelay = false;
+    [SerializeField] float delay = 0f;
 
     private void Awake() {
         //Singleton
