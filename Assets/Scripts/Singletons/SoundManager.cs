@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class SoundManager : MonoBehaviour {
-    public static SoundManager Instance;
-
+public class SoundManager : SingletonPersistent<SoundManager> {
     private const string VOLUME_SFX = "volume_sfx";
     private const string VOLUME_MUSIC = "volume_music";
     private const int SOUND_POOL_LENGTH = 10;
@@ -27,14 +25,8 @@ public class SoundManager : MonoBehaviour {
     public bool IsSFXEnabled { get { return isSFXEnabled; } set { isSFXEnabled = value; } }
 
 
-    private void Awake() {
-        //Singleton
-        if (Instance == null) {
-            Instance = this;
-            DontDestroyOnLoad(this);
-        } else if (Instance != this) {
-            Destroy(gameObject);
-        }
+    public override void Awake() {
+        base.Awake();
 
         //SFX ObjectPool
         CreateSourcePool();

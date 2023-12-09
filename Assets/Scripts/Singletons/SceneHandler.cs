@@ -3,21 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneHandler : MonoBehaviour {
-    public static SceneHandler Instance;
+public class SceneHandler : SingletonPersistent<SceneHandler> {
 
     [SerializeField] bool hasDelay = false;
     [SerializeField] float delay = 0f;
-
-    private void Awake() {
-        //Singleton
-        if (Instance == null) {
-            Instance = this;
-            DontDestroyOnLoad(this);
-        } else if (Instance != this) {
-            Destroy(gameObject);
-        }
-    }
 
     //Loads Scene given Scene Name
     public void LoadScene(string sceneName) {
