@@ -14,7 +14,8 @@ public class SoundManager : MonoBehaviour {
     [SerializeField] bool isMusicEnabled = true;
     [SerializeField] bool isSFXEnabled = true;
     [SerializeField] AudioMixer mixer;
-    [SerializeField] GameObject AudioSourcePrefab;
+    [SerializeField] AudioSource musicAudioSource;
+    [SerializeField] GameObject audioSourcePrefab;
 
     //[SerializeField, FoldoutGroup("Audio Clips", Expanded = false)] AudioClip buttonSFX;
 
@@ -45,7 +46,7 @@ public class SoundManager : MonoBehaviour {
 
     private void CreateSourcePool() {
         for (int i = 0; i < SOUND_POOL_LENGTH; i++) {
-            GameObject obj = Instantiate(AudioSourcePrefab);
+            GameObject obj = Instantiate(audioSourcePrefab);
             obj.transform.parent = transform;
             sourcePool.Add(obj);
         }

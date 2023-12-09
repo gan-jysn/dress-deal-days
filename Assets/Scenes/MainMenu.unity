@@ -698,7 +698,8 @@ MonoBehaviour:
   isMusicEnabled: 1
   isSFXEnabled: 1
   mixer: {fileID: 24100000, guid: adfb107d1c2e6014089d6383f9f0953d, type: 2}
-  AudioSourcePrefab: {fileID: 1918208186299924628, guid: c7f20ac2b0d5c7846be4e554623b614c, type: 3}
+  musicAudioSource: {fileID: 987943959}
+  audioSourcePrefab: {fileID: 1918208186299924628, guid: c7f20ac2b0d5c7846be4e554623b614c, type: 3}
 --- !u!4 &594729527
 Transform:
   m_ObjectHideFlags: 0
