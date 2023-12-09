@@ -14,10 +14,43 @@ public class PlayerAnimHandler : MonoBehaviour {
         if (movementController == null) {
             movementController = GetComponentInParent<MovementController>();
         }
+
+        AddEventCallbacks();
+    }
+
+    private void OnDestroy() {
+        RemoveEventCallbacks();
     }
 
     private void Update() {
+        if (movementController != null) {
+            if (!movementController.IsControlsEnabled)
+                return;
+        }
+
         UpdateMovementVariables();
+    }
+
+    private void AddEventCallbacks() {
+        if (movementController != null) {
+            movementController.OnJump += TriggerJump;
+            movementController.OnRunToggle += SetRunToggleValue;
+        }
+    }
+
+    private void RemoveEventCallbacks() {
+        if (movementController != null) {
+            movementController.OnJump -= TriggerJump;
+            movementController.OnRunToggle -= SetRunToggleValue;
+        }
+    }
+
+    private void TriggerJump() {
+        animator.SetTrigger("Jump");
+    }
+
+    private void SetRunToggleValue(bool isRunEnabled) {
+        animator.SetBool("IsRunEnabled", isRunEnabled);
     }
 
     private void UpdateMovementVariables() {

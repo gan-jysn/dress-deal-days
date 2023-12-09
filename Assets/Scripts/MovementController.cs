@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,13 @@ public class MovementController : MonoBehaviour {
 
     public bool IsControlsEnabled { get { return isControlsEnabled; } }
     public float MovementSpeed { get { return movementSpeed; } }
+    public bool IsRunEnabled { get { return isRunEnabled; } }
     public Vector2 MoveVector { get { return moveVector; } }
+
+    #region Events
+    public event Action OnJump;
+    public event Action<bool> OnRunToggle;
+    #endregion
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -63,16 +70,17 @@ public class MovementController : MonoBehaviour {
     }
 
     private void Jump() {
-        //Add Jump Functionality Here
-        Debug.Log("Jump");
+        OnJump?.Invoke();
     }
 
     private void OnRunEnabled() {
         isRunEnabled = true;
+        OnRunToggle?.Invoke(isRunEnabled);
     }
 
     private void OnRunDisabled() {
         isRunEnabled = false;
+        OnRunToggle?.Invoke(isRunEnabled);
     }
 
     private void Interact() {
