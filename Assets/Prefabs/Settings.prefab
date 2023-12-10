@@ -659,9 +659,9 @@ MonoBehaviour:
   popupPanel: {fileID: 2977459400391005308}
   closeBtn: {fileID: 2977459401105552633}
   delayTime: 0.75
-  toggleSFX: {fileID: 0}
-  toggleMusic: {fileID: 0}
-  audioSlider: {fileID: 0}
+  toggleSFX: {fileID: 3255886967349867510}
+  toggleMusic: {fileID: 3616431946014837254}
+  audioSlider: {fileID: 6183699902120609200}
 --- !u!1 &2977459400900185747
 GameObject:
   m_ObjectHideFlags: 0
@@ -1313,7 +1313,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2977459400787650848}
+        m_TargetAssemblyTypeName: UI_Settings, Assembly-CSharp
+        m_MethodName: ToggleMusicListener
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &5672820240373196801
 GameObject:
@@ -1612,7 +1624,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2977459400787650848}
+        m_TargetAssemblyTypeName: UI_Settings, Assembly-CSharp
+        m_MethodName: ToggleSFXListener
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &6180866560790182329
 GameObject:
@@ -1764,12 +1788,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6598314701187631914}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2977459400787650848}
+        m_TargetAssemblyTypeName: UI_Settings, Assembly-CSharp
+        m_MethodName: AdjustedSliderListener
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6937375535222935966
 GameObject:
   m_ObjectHideFlags: 0

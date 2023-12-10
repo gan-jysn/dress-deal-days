@@ -48,9 +48,9 @@ public class EquipmentHandler : MonoBehaviour {
         if (item.ItemPrefab != null) {
             clothesObject = Instantiate(item.ItemPrefab, this.transform);
             clothesObject.transform.position = Vector3.zero;
-            OnEquipClothing?.Invoke();
         }
 
+        OnEquipClothing?.Invoke();
     }
 
     private void EquipHat(EquipableItemSO item) {

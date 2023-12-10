@@ -254,7 +254,7 @@ MonoBehaviour:
   clothesObject: {fileID: 3662076531648291271}
   spriteLib: {fileID: 7465198364646876558}
   currentHat: {fileID: 0}
-  currentClothes: {fileID: 0}
+  currentClothes: {fileID: 11400000, guid: 2438540c5aac3d444ae4eebfcb988d82, type: 2}
 --- !u!1001 &5942095938365155594
 PrefabInstance:
   m_ObjectHideFlags: 0

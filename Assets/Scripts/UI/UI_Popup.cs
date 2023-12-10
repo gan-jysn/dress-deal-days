@@ -28,6 +28,7 @@ public class UI_Popup : MonoBehaviour {
     public virtual void OpenPanel() {
         popupPanel.SetActive(true);
         OnPopupOpened?.Invoke();
+        GameManager.Instance.PauseGame();
     }
 
     //Close Panel
@@ -41,6 +42,7 @@ public class UI_Popup : MonoBehaviour {
         yield return new WaitForSeconds(delayTime);
         popupPanel.SetActive(false);
         closeBtn.interactable = true;
+        GameManager.Instance.ResumeGame();
     }
 
     public void PlayBtnSFX() {

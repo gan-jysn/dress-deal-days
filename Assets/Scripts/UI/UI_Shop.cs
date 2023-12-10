@@ -240,6 +240,7 @@ public class UI_Shop : UI_Popup {
         SoundManager.Instance.PlayBtnSFX();
         StartCoroutine(DelayAction(() => {
             buyBtn.interactable = true;
+            ClosePanel();
         }));
     }
 
@@ -248,6 +249,7 @@ public class UI_Shop : UI_Popup {
         SoundManager.Instance.PlayBtnSFX();
         StartCoroutine(DelayAction(() => {
             sellBtn.interactable = true;
+            ClosePanel();
         }));
 
     }
