@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 1256192668, guid: 4448da3a8b8511048894a728e72fa4e3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -129,11 +129,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5654728362463888667}
   - component: {fileID: 5654728362463888666}
+  - component: {fileID: 6275484066684652101}
   - component: {fileID: 629604678449157964}
   - component: {fileID: 3032540265646013400}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,6 +176,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &6275484066684652101
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5654728362463888612}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.375}
+  serializedVersion: 2
+  m_Radius: 0.375
 --- !u!114 &629604678449157964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,7 +205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isControlsEnabled: 1
-  movementSpeed: 5
+  defaultMovementSpeed: 5
+  runningMovementSpeed: 7.5
 --- !u!114 &3032540265646013400
 MonoBehaviour:
   m_ObjectHideFlags: 0
