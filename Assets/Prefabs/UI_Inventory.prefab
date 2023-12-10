@@ -192,7 +192,7 @@ MonoBehaviour:
   itemViewContainer: {fileID: 113017484799865445}
   inventoryHandler: {fileID: 0}
   useBtn: {fileID: 113017485323820477}
-  equipBtn: {fileID: 0}
+  useBtnTxt: {fileID: 113017483818332799}
   itemNameTxt: {fileID: 113017484148467403}
   itemDescTxt: {fileID: 113017484084453533}
 --- !u!1 &113017484056630370
@@ -1625,7 +1625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.6666667}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

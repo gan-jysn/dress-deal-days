@@ -13,7 +13,6 @@ public class UI_Inventory : UI_Popup {
     [Header("Button References")]
     [SerializeField] Button useBtn;
     [SerializeField] TextMeshProUGUI useBtnTxt;
-    [SerializeField] Button equipBtn;
 
     [Header("Item Info References")]
     [SerializeField] TextMeshProUGUI itemNameTxt;

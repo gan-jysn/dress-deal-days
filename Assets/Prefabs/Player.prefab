@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 5654728362463888667}
   - component: {fileID: 5654728362463888666}
   - component: {fileID: 629604678449157964}
+  - component: {fileID: 3032540265646013400}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -188,3 +189,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isControlsEnabled: 1
   movementSpeed: 5
+--- !u!114 &3032540265646013400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5654728362463888612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a1e5eed2997c34abd66d1c1cbb3a59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: da2fd9463a7663a44827e4e9c9c9cbfa, type: 2}
