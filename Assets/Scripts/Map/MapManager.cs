@@ -10,6 +10,7 @@ public class MapManager : Singleton<MapManager> {
     [SerializeField, FoldoutGroup("Tilemap Layers")] TilemapRenderer ground;   
     [SerializeField, FoldoutGroup("Tilemap Layers")] TilemapRenderer interior;
     [SerializeField, FoldoutGroup("Tilemap Layers")] TilemapRenderer interiorWalls;
+    [SerializeField, FoldoutGroup("Tilemap Layers")] TilemapRenderer interiorAccessories;
     [SerializeField, FoldoutGroup("Tilemap Layers")] TilemapRenderer buildings;
     [SerializeField, FoldoutGroup("Tilemap Layers")] TilemapRenderer buildingDoors;
     [SerializeField, FoldoutGroup("Tilemap Layers")] TilemapRenderer buildingRoofs;
@@ -49,6 +50,7 @@ public class MapManager : Singleton<MapManager> {
         //Set Renderer Active Status
         interior.enabled = true;
         interiorWalls.enabled = true;
+        interiorAccessories.enabled = true;
         buildings.enabled = false;
         buildingDoors.enabled = false;
         buildingRoofs.enabled = false;
@@ -63,6 +65,7 @@ public class MapManager : Singleton<MapManager> {
         //Set Renderer Active Status
         interior.enabled = false;
         interiorWalls.enabled = false;
+        interiorAccessories.enabled = false;
         buildings.enabled = true;
         buildingDoors.enabled = true;
         buildingRoofs.enabled = true;
