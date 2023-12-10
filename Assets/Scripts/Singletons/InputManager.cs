@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[DefaultExecutionOrder(-1)]
 public class InputManager : Singleton<InputManager> {
     private InputActions inputActions;
     
@@ -53,11 +52,15 @@ public class InputManager : Singleton<InputManager> {
     }
 
     private void OnEnable() {
-        inputActions.Enable();
+        if (inputActions != null) {
+            inputActions.Enable();
+        }
     }
 
     private void OnDisable() {
-        inputActions.Disable();
+        if (inputActions != null) {
+            inputActions.Disable();
+        }
     }
 
     private void OnMovementPerformed(InputAction.CallbackContext value) {

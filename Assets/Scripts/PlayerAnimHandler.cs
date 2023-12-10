@@ -24,7 +24,7 @@ public class PlayerAnimHandler : MonoBehaviour {
 
     private void Update() {
         if (movementController != null) {
-            if (!movementController.IsControlsEnabled)
+            if (!movementController.IsMovementEnabled)
                 return;
         }
 
@@ -47,7 +47,7 @@ public class PlayerAnimHandler : MonoBehaviour {
         }
     }
 
-    private void SetDirection(LastDirection dir) {
+    private void SetDirection(Direction dir) {
         float index = (float) dir;
         animator.SetFloat("LastDirection", index);
     }

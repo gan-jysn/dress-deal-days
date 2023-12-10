@@ -5,7 +5,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class MovementController : MonoBehaviour {
-    [SerializeField] bool isControlsEnabled = true;
+    [SerializeField] bool isMovementEnabled = true;
     [SerializeField] float defaultMovementSpeed = 5f;
     [SerializeField] float runningMovementSpeed = 7.5f;
 
@@ -13,15 +13,17 @@ public class MovementController : MonoBehaviour {
     private bool isRunEnabled = false;
     private Vector2 moveVector = Vector2.zero;
     private float movementSpeed = 0;
-    private LastDirection lastDirection = LastDirection.Down;
+    private Direction currentDirection = Direction.Down;
+    private Direction lastDirection = Direction.Down;
 
-    public bool IsControlsEnabled { get { return isControlsEnabled; } }
+    public bool IsMovementEnabled { get { return isMovementEnabled; } }
     public float MovementSpeed { get { return movementSpeed; } }
     public bool IsRunEnabled { get { return isRunEnabled; } }
     public Vector2 MoveVector { get { return moveVector; } }
+    public Direction CurrentDirection { get { return currentDirection;} }
 
     #region Events
-    public event Action<LastDirection> OnSetLastDirection;
+    public event Action<Direction> OnSetLastDirection;
     public event Action OnJump;
     public event Action<bool> OnRunToggle;
     #endregion
@@ -38,7 +40,7 @@ public class MovementController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (!isControlsEnabled)
+        if (!isMovementEnabled)
             return;
 
         //Movement
@@ -52,10 +54,9 @@ public class MovementController : MonoBehaviour {
         InputManager.Instance.OnShiftStarted += OnRunEnabled;
         InputManager.Instance.OnShiftEnded += OnRunDisabled;
         InputManager.Instance.OnJumpPressed += Jump;
-        InputManager.Instance.OnInteractPressed += Interact;
 
-        GameManager.Instance.OnGamePaused += DisableControls;
-        GameManager.Instance.OnGameResumed += EnableControls;
+        GameManager.Instance.OnGamePaused += DisableMovement;
+        GameManager.Instance.OnGameResumed += EnableMovement;
     }
 
     private void RemoveEventCallbacks() {
@@ -65,15 +66,15 @@ public class MovementController : MonoBehaviour {
         InputManager.Instance.OnShiftStarted -= OnRunEnabled;
         InputManager.Instance.OnShiftEnded -= OnRunDisabled;
         InputManager.Instance.OnJumpPressed -= Jump;
-        InputManager.Instance.OnInteractPressed -= Interact;
 
-        GameManager.Instance.OnGamePaused -= DisableControls;
-        GameManager.Instance.OnGameResumed -= EnableControls;
+        GameManager.Instance.OnGamePaused -= DisableMovement;
+        GameManager.Instance.OnGameResumed -= EnableMovement;
     }
 
     private void OnMovementStart(Vector2 input) {
         //Assign Input Value to Local Move Vector
         moveVector = input;
+        currentDirection = CheckDirection();
     }
 
     private void OnMovementEnd() {
@@ -81,21 +82,25 @@ public class MovementController : MonoBehaviour {
         moveVector = Vector2.zero;
     }
 
-    private void CheckLastDirection() {
+    private Direction CheckDirection() {
         if (moveVector.x == 0) {
             if (moveVector.y > 0) {
-                lastDirection = LastDirection.Up;
+                return Direction.Up;
             } else {
-                lastDirection = LastDirection.Down;
+                return Direction.Down;
             }
         } else if (moveVector.y == 0) {
             if (moveVector.x > 0) {
-                lastDirection = LastDirection.Right;
+                return Direction.Right;
             } else {
-                lastDirection = LastDirection.Left;
+                return Direction.Left;
             }
         }
+        return Direction.Down;
+    }
 
+    private void CheckLastDirection() {
+        lastDirection = CheckDirection();
         OnSetLastDirection?.Invoke(lastDirection);
     }
 
@@ -115,21 +120,16 @@ public class MovementController : MonoBehaviour {
         OnRunToggle?.Invoke(isRunEnabled);
     }
 
-    private void Interact() {
-        //Add Interact Functionality Here
-        Debug.Log("Interact");
+    private void DisableMovement() {
+        isMovementEnabled = false;
     }
 
-    private void DisableControls() {
-        isControlsEnabled = false;
-    }
-
-    public void EnableControls() {
-        isControlsEnabled = true;
+    public void EnableMovement() {
+        isMovementEnabled = true;
     }
 }
 
-public enum LastDirection {
+public enum Direction {
     Up,
     Down,
     Left,
