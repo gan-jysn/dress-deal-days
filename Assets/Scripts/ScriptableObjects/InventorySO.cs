@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/Inventory")]
-public class Inventory : ScriptableObject {
+public class InventorySO : ScriptableObject {
     public int Currency;
-    public List<Item> Items = new List<Item>();
+    public List<ItemSO> Items = new List<ItemSO>();
 }

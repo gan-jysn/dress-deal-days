@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : ScriptableObject {
+public class ItemSO : ScriptableObject {
     public int ItemID;
     public string ItemName;
-    public string Description;
+    [TextArea] public string Description;
     public int Value;
     public ItemType Type;
     public Sprite Icon;

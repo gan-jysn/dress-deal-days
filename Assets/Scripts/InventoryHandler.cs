@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryHandler : MonoBehaviour {
-    [SerializeField] Inventory inventory;
+    [SerializeField] InventorySO inventory;
 
     public int Currency { get { return inventory.Currency; } protected set { inventory.Currency = value; } }
-    public List<Item> Items { get { return inventory.Items; } }
+    public List<ItemSO> Items { get { return inventory.Items; } }
 
-    private int GetItemIndexFromInventory(Item item) {
+    private int GetItemIndexFromInventory(ItemSO item) {
         for (int i = 0;i < inventory.Items.Count;i++) {
             if (inventory.Items[i] == item) {
                 return i;
@@ -18,7 +18,7 @@ public class InventoryHandler : MonoBehaviour {
     }
 
     private int GetItemIndexFromInventoryViaID(int id) {
-        Item item = GetItemFromInventoryViaID(id);
+        ItemSO item = GetItemFromInventoryViaID(id);
         if (item != null) {
             int index = GetItemIndexFromInventory(item);
             return index;
@@ -27,8 +27,8 @@ public class InventoryHandler : MonoBehaviour {
         return -1;
     }
 
-    private Item GetItemFromInventoryViaID(int id) {
-        foreach (Item item in inventory.Items) {
+    private ItemSO GetItemFromInventoryViaID(int id) {
+        foreach (ItemSO item in inventory.Items) {
             if (item.ItemID == id) {
                 return item;
             }
@@ -40,7 +40,7 @@ public class InventoryHandler : MonoBehaviour {
 
     private int GetItemQuantityViaID(int id) {
         int quantity = 0;
-        foreach (Item item in inventory.Items) {
+        foreach (ItemSO item in inventory.Items) {
             if (item.ItemID == id) {
                 quantity++;
             }
@@ -63,14 +63,18 @@ public class InventoryHandler : MonoBehaviour {
         inventory.Currency = tempCurrency;
     }
 
-    public void AddItem(Item item) {
+    public void AddItem(ItemSO item) {
         inventory.Items.Add(item);
         Debug.Log(item.ItemName + " has been added to Inventory");
     }
 
-    public void RemoveItem(Item item) {
+    public void RemoveItem(ItemSO item) {
         int itemIndex = GetItemIndexFromInventory(item);
         inventory.Items.RemoveAt(itemIndex);
         Debug.Log(item.ItemName + " has been removed from Inventory");
+    }
+
+    public void GetItemValueViaID(int id) {
+
     }
 }

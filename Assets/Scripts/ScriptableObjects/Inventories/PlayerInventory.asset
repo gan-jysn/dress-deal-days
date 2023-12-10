@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
   Currency: 10000
-  Items: []
+  Items:
+  - {fileID: 11400000, guid: 0408bb8e118212d42aab59fc7d8b830c, type: 2}
