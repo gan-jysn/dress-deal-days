@@ -60,13 +60,13 @@ public class UI_Inventory : UI_Popup {
         //Update Data
         for (int i = 0;i < inventorySize;i++) {
             ItemSO data = inventoryHandler.Items[i];
-            UI_Item ui = UIItems[i];
-            if (ui != null) {
+            if ((i + 1) > UIItems.Count) {
+                CreateItemPrefab(data);
+            } else {
+                UI_Item ui = UIItems[i];
                 ui.gameObject.SetActive(true);
                 ui.SetItemData(data);
                 ui.UpdateUI();
-            } else {
-                CreateItemPrefab(data);
             }
         }
 
