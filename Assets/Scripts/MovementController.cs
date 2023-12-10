@@ -6,11 +6,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class MovementController : MonoBehaviour {
     [SerializeField] bool isControlsEnabled = true;
-    [SerializeField] float movementSpeed = 5f;
+    [SerializeField] float defaultMovementSpeed = 5f;
+    [SerializeField] float runningMovementSpeed = 7.5f;
 
     private Rigidbody2D rb;
     private bool isRunEnabled = false;
     private Vector2 moveVector = Vector2.zero;
+    private float movementSpeed = 0;
 
     public bool IsControlsEnabled { get { return isControlsEnabled; } }
     public float MovementSpeed { get { return movementSpeed; } }
@@ -24,6 +26,7 @@ public class MovementController : MonoBehaviour {
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
+        movementSpeed = defaultMovementSpeed;
 
         AddEventCallbacks();
     }
@@ -81,11 +84,13 @@ public class MovementController : MonoBehaviour {
 
     private void OnRunEnabled() {
         isRunEnabled = true;
+        movementSpeed = runningMovementSpeed;
         OnRunToggle?.Invoke(isRunEnabled);
     }
 
     private void OnRunDisabled() {
         isRunEnabled = false;
+        movementSpeed = defaultMovementSpeed;
         OnRunToggle?.Invoke(isRunEnabled);
     }
 
