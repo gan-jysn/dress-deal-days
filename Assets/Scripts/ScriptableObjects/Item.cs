@@ -15,11 +15,3 @@ public enum ItemType {
     Consumable,
     Trophy
 }
-
-public enum EquipType {
-    Head,
-    Body,
-    Pants,
-    Shoes,
-    Weapon
-}

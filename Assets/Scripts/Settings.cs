@@ -9,9 +9,6 @@ public class Settings : MonoBehaviour {
     [SerializeField] private float closeDelayTime = 0.25f;
 
     private void Start() {
-        if (settingsPanel == null) {
-            settingsPanel = this.gameObject;
-        }
         //Set Default Active Status
         settingsPanel.SetActive(false);
     }
@@ -34,5 +31,6 @@ public class Settings : MonoBehaviour {
     private IEnumerator DelayClose() {
         yield return new WaitForSeconds(closeDelayTime);
         settingsPanel.SetActive(false);
+        closeButton.interactable = true;
     }
 }

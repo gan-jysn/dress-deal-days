@@ -25,11 +25,11 @@ public class MovementController : MonoBehaviour {
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
 
-        AddInputEventCallbacks();
+        AddEventCallbacks();
     }
 
     private void OnDestroy() {
-        RemoveInputEventCallbacks();
+        RemoveEventCallbacks();
     }
 
     private void FixedUpdate() {
@@ -40,7 +40,7 @@ public class MovementController : MonoBehaviour {
         rb.MovePosition(rb.position + moveVector * movementSpeed * Time.fixedDeltaTime);
     }
 
-    private void AddInputEventCallbacks() {
+    private void AddEventCallbacks() {
         //Subscribe to Event Callbacks
         InputManager.Instance.OnMovementStart += OnMovementStart;
         InputManager.Instance.OnMovementEnd += OnMovementEnd;
@@ -48,9 +48,12 @@ public class MovementController : MonoBehaviour {
         InputManager.Instance.OnShiftEnded += OnRunDisabled;
         InputManager.Instance.OnJumpPressed += Jump;
         InputManager.Instance.OnInteractPressed += Interact;
+
+        GameManager.Instance.OnGamePaused += DisableControls;
+        GameManager.Instance.OnGameResumed += EnableControls;
     }
 
-    private void RemoveInputEventCallbacks() {
+    private void RemoveEventCallbacks() {
         //Unsubscribe to Event Callbacks
         InputManager.Instance.OnMovementStart -= OnMovementStart;
         InputManager.Instance.OnMovementEnd -= OnMovementEnd;
@@ -58,6 +61,9 @@ public class MovementController : MonoBehaviour {
         InputManager.Instance.OnShiftEnded -= OnRunDisabled;
         InputManager.Instance.OnJumpPressed -= Jump;
         InputManager.Instance.OnInteractPressed -= Interact;
+
+        GameManager.Instance.OnGamePaused -= DisableControls;
+        GameManager.Instance.OnGameResumed -= EnableControls;
     }
 
     private void OnMovementStart(Vector2 input) {
@@ -86,5 +92,13 @@ public class MovementController : MonoBehaviour {
     private void Interact() {
         //Add Interact Functionality Here
         Debug.Log("Interact");
+    }
+
+    private void DisableControls() {
+        isControlsEnabled = false;
+    }
+
+    public void EnableControls() {
+        isControlsEnabled = true;
     }
 }
