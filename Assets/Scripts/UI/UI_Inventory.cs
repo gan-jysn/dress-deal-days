@@ -25,12 +25,14 @@ public class UI_Inventory : UI_Popup {
         base.Start();
 
         OnPopupOpened += OnPopupOpen;
+        inventoryHandler.OnItemStored += UpdateInventory;
         ClearItemInfo();
         InitializeInventory();
     }
 
     private void OnDestroy() {
         OnPopupOpened -= OnPopupOpen;
+        inventoryHandler.OnItemStored -= UpdateInventory;
     }
 
     private void OnPopupOpen() {
@@ -128,5 +130,13 @@ public class UI_Inventory : UI_Popup {
                 useBtn.gameObject.SetActive(false);
                 break;
         }
+    }
+
+    public void EquipItem() {
+        ItemSO item = inventoryHandler.GetPlayerItemViaID(activeItemID);
+        inventoryHandler.EquiptItem(item);
+
+        ClosePanel();
+        useBtn.interactable = true;
     }
 }

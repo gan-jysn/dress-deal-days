@@ -22,11 +22,13 @@ public class UI_Item : MonoBehaviour, IPointerClickHandler {
     }
 
     public void UpdateUI() {
-        iconImage.sprite = itemData.Icon;
-        if (itemData.Type == ItemType.Consumable) {
-            quantityTxt.text = "";  //Assign Quantity Value
-        } else {
-            quantityTxt.text = "";
+        if (itemData != null) {
+            iconImage.sprite = itemData.Icon;
+            if (itemData.Type == ItemType.Consumable) {
+                quantityTxt.text = "";  //Assign Quantity Value for Consumables
+            } else {
+                quantityTxt.text = "";
+            }
         }
     }
 

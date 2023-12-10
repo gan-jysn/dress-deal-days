@@ -180,4 +180,4 @@ MonoBehaviour:
   audioSourcePrefab: {fileID: 1918208186299924628, guid: c7f20ac2b0d5c7846be4e554623b614c, type: 3}
   buttonSFX: {fileID: 8300000, guid: 24d73765699ce3e46bb23cabc3a46494, type: 3}
   titleBGM: {fileID: 0}
-  gameBGM: {fileID: 0}
+  gameBGM: {fileID: 8300000, guid: 5d1a638179550f74fae0bc9c5d8a7144, type: 3}

@@ -1372,7 +1372,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 113017483900087951}
         m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
-        m_MethodName: 
+        m_MethodName: EquipItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -21,3 +21,4 @@ MonoBehaviour:
   EquipType: 1
   SpriteSheet: {fileID: -109597111, guid: 16d5fc50371a77844bbefb662be71004, type: 3}
   ItemPrefab: {fileID: 0}
+  itemAsset: {fileID: 7108339969198208228, guid: d628156fa5e38cd4a80ca5f37db2dae1, type: 3}

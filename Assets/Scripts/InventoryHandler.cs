@@ -1,12 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryHandler : MonoBehaviour {
     [SerializeField] InventorySO inventory;
+    [SerializeField] EquipmentHandler equipmentHandler;
 
     public int Currency { get { return inventory.Currency; } }
     public List<ItemSO> Items { get { return inventory.Items; } }
+
+    #region Events
+    public event Action OnItemStored;
+    #endregion
+
+    private void Start() {
+        equipmentHandler.OnEquipClothing += () => {
+            inventory.RemoveItem(equipmentHandler.CurrentClothes);
+        };
+    }
 
     public ItemSO GetPlayerItemViaID(int id) {
         return GetItemViaID(inventory, id);
@@ -35,5 +47,16 @@ public class InventoryHandler : MonoBehaviour {
     public void SellItem(ItemSO item) {
         inventory.RemoveItem(item);
         AddCurrency(item.Value);
+    }
+
+    public void StoreItem(ItemSO item) {
+        inventory.AddItem(item);
+        OnItemStored?.Invoke();
+    }
+
+    public void EquiptItem(ItemSO item) {
+        if (equipmentHandler != null) {
+            equipmentHandler.EquiptItem(item);
+        }
     }
 }
