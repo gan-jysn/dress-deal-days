@@ -14,7 +14,7 @@ public class UI_Item : MonoBehaviour, IPointerClickHandler {
     public ItemSO ItemData { get { return itemData; } }
 
     #region Events
-    public event Action<int, string, string> OnItemSelected;
+    public event Action<int, ItemType, string, string> OnItemSelected;
     #endregion
 
     private void OnEnable() {
@@ -35,7 +35,7 @@ public class UI_Item : MonoBehaviour, IPointerClickHandler {
     }
 
     public void Select() {
-        OnItemSelected?.Invoke(itemData.ItemID, itemData.ItemName, itemData.Description);
+        OnItemSelected?.Invoke(itemData.ItemID, itemData.Type, itemData.ItemName, itemData.Description);
     }
 
     public void OnPointerClick(PointerEventData eventData) {

@@ -10,8 +10,9 @@ public class UI_Inventory : UI_Popup {
     [SerializeField] Transform itemViewContainer;
     [SerializeField] InventoryHandler inventoryHandler;
 
-    [Header("Buttons")]
+    [Header("Button References")]
     [SerializeField] Button useBtn;
+    [SerializeField] TextMeshProUGUI useBtnTxt;
     [SerializeField] Button equipBtn;
 
     [Header("Item Info References")]
@@ -102,9 +103,26 @@ public class UI_Inventory : UI_Popup {
         return null;
     }
 
-    public void SetItemInfo(int itemID, string itemName, string itemDesc) {
+    public void SetItemInfo(int itemID, ItemType type, string itemName, string itemDesc) {
         activeItemID = itemID;
+        SetUseButton(type);
         itemNameTxt.text = itemName;
         itemDescTxt.text = itemDesc;
+    }
+
+    private void SetUseButton(ItemType type) {
+        switch (type) {
+            case ItemType.Clothing:
+                useBtn.gameObject.SetActive(true);
+                useBtnTxt.text = "Equipt Item";
+                break;
+            case ItemType.Consumable:
+                useBtn.gameObject.SetActive(true);
+                useBtnTxt.text = "Use Item";
+                break;
+            case ItemType.Trophy:
+                useBtn.gameObject.SetActive(false);
+                break;
+        }
     }
 }
