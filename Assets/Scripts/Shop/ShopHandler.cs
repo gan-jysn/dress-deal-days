@@ -17,6 +17,11 @@ public class ShopHandler : MonoBehaviour {
     public int ShopInventorySize { get { return shopInventory.Items.Count; } }
     public List<ItemSO> ShopInventory { get { return shopInventory.Items; } }
 
+    #region Events
+    public event Action OnShopMadeSale; //Trigger when Shop made a sale
+    public event Action OnShopReceiveNewItem;   //Trigger when Player sold an Item
+    #endregion
+
     private void Start() {
         if (trigger == null) {
             trigger = FindObjectOfType<ShopTrigger>();
@@ -50,7 +55,26 @@ public class ShopHandler : MonoBehaviour {
     }
 
     public void OpenShop() {
-        shopUI.OpenPanel();
-        shopUI.ResetPanelUI();
+        if (!shopUI.IsShopActive) {
+            shopUI.OpenPanel();
+            shopUI.ResetPanelUI();
+        }
+    }
+
+    public void BuyItem() {
+        ItemSO item = shopInventory.GetItemViaID(shopUI.ActiveBuyItemID);
+        bool isPurchased = inventoryHandler.TryBuyItem(item);
+        if (isPurchased) {
+            shopInventory.AddCurrency(item.Value);
+            shopInventory.RemoveItem(item);
+            OnShopMadeSale?.Invoke();
+        }
+    }
+
+    public void SellItem() {
+        ItemSO item = inventoryHandler.GetPlayerItemViaID(shopUI.ActiveSellItemID);
+        shopInventory.AddItem(item);
+        inventoryHandler.SellItem(item);
+        OnShopReceiveNewItem?.Invoke();
     }
 }

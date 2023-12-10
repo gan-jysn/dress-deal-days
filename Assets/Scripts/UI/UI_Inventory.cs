@@ -80,7 +80,7 @@ public class UI_Inventory : UI_Popup {
         }
 
         //Select First Item
-        if (UIItems.Count > 0) {
+        if (UIItems != null && UIItems.Count > 0) {
             UIItems[0].Select();
         }
     }

@@ -35,6 +35,11 @@ public class UI_Shop : UI_Popup {
 
     private int activeBuyItemID;
     private int activeSellItemID;
+    private bool isShopActive = false;
+
+    public int ActiveBuyItemID { get { return activeBuyItemID; } }
+    public int ActiveSellItemID { get { return activeSellItemID; } }
+    public bool IsShopActive { get { return isShopActive;  } }
 
     #region Events
     public event Action OnBuyPanelOpened;
@@ -54,21 +59,17 @@ public class UI_Shop : UI_Popup {
     }
 
     private void AddEventCallbacks() {
-        OnBuyPanelOpened += OnOpenBuyPanel;
-        OnSellPanelOpened += OnOpenSellPanel;
+        OnBuyPanelOpened += UpdateShopInventory;
+        OnSellPanelOpened += UpdatePlayerInventory;
+        shopHandler.OnShopMadeSale += UpdateShopInventory;
+        shopHandler.OnShopReceiveNewItem += UpdatePlayerInventory;
     }
 
     private void RemoveEventCallbacks() {
-        OnBuyPanelOpened -= OnOpenBuyPanel;
-        OnSellPanelOpened -= OnOpenSellPanel;
-    }
-
-    private void OnOpenBuyPanel() {
-        UpdateShopInventory();
-    }
-
-    private void OnOpenSellPanel() {
-        UpdatePlayerInventory();
+        OnBuyPanelOpened -= UpdateShopInventory;
+        OnSellPanelOpened -= UpdatePlayerInventory;
+        shopHandler.OnShopMadeSale -= UpdateShopInventory;
+        shopHandler.OnShopReceiveNewItem -= UpdatePlayerInventory;
     }
 
     private void InitializeInvetories() {
@@ -194,6 +195,16 @@ public class UI_Shop : UI_Popup {
         sellPanel.SetActive(false);
     }
 
+    public override void OpenPanel() {
+        base.OpenPanel();
+        isShopActive = true;
+    }
+
+    public override void ClosePanel() {
+        base.ClosePanel();
+        isShopActive = false;
+    }
+
     public void OpenBuyPanel() {
         SoundManager.Instance.PlayBtnSFX();
         OnBuyPanelOpened?.Invoke();
@@ -222,6 +233,23 @@ public class UI_Shop : UI_Popup {
             buyBtn.interactable = true;
             sellBtn.interactable = true;
         }));
+    }
+
+    public void BuyActiveItem() {
+        shopHandler.BuyItem();
+        SoundManager.Instance.PlayBtnSFX();
+        StartCoroutine(DelayAction(() => {
+            buyBtn.interactable = true;
+        }));
+    }
+
+    public void SellActiveItem() {
+        shopHandler.SellItem();
+        SoundManager.Instance.PlayBtnSFX();
+        StartCoroutine(DelayAction(() => {
+            sellBtn.interactable = true;
+        }));
+
     }
 
     private IEnumerator DelayAction(Action action) {

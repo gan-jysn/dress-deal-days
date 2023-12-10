@@ -10,6 +10,7 @@ public class MovementController : MonoBehaviour {
     [SerializeField] float runningMovementSpeed = 7.5f;
 
     private Rigidbody2D rb;
+    private PlayerAnimHandler animHandler;
     private bool isRunEnabled = false;
     private Vector2 moveVector = Vector2.zero;
     private float movementSpeed = 0;
@@ -30,6 +31,7 @@ public class MovementController : MonoBehaviour {
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
+        animHandler = GetComponentInChildren<PlayerAnimHandler>();
         movementSpeed = defaultMovementSpeed;
 
         AddEventCallbacks();

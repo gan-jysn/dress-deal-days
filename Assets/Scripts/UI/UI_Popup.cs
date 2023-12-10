@@ -25,13 +25,13 @@ public class UI_Popup : MonoBehaviour {
     }
 
     //Open Panel
-    public void OpenPanel() {
+    public virtual void OpenPanel() {
         popupPanel.SetActive(true);
         OnPopupOpened?.Invoke();
     }
 
     //Close Panel
-    public void ClosePanel() {
+    public virtual void ClosePanel() {
         PlayBtnSFX();
         StartCoroutine(DelayClose());
     }
