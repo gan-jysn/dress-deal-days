@@ -39,8 +39,8 @@ MonoBehaviour:
       m_SpriteOverride: {fileID: -1304849313, guid: d359f4fe7d815824bb63a20bcf901581, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 4
-  - m_Name: Walk
-    m_Hash: 765711723
+  - m_Name: Walking
+    m_Hash: 1744665739
     m_CategoryList: []
     m_OverrideEntries:
     - m_Name: Left_0
@@ -165,8 +165,8 @@ MonoBehaviour:
       m_SpriteOverride: {fileID: 1807762855, guid: d359f4fe7d815824bb63a20bcf901581, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 24
-  - m_Name: Run
-    m_Hash: 1748754976
+  - m_Name: Running
+    m_Hash: -526601997
     m_CategoryList: []
     m_OverrideEntries:
     - m_Name: Left_0
