@@ -15,7 +15,9 @@ public class SoundManager : SingletonPersistent<SoundManager> {
     [SerializeField] AudioSource musicAudioSource;
     [SerializeField] GameObject audioSourcePrefab;
 
-    //[SerializeField, FoldoutGroup("Audio Clips", Expanded = false)] AudioClip buttonSFX;
+    [SerializeField, FoldoutGroup("Audio Clips", Expanded = false)] AudioClip buttonSFX;
+    [SerializeField, FoldoutGroup("Audio Clips", Expanded = false)] AudioClip titleBGM;
+    [SerializeField, FoldoutGroup("Audio Clips", Expanded = false)] AudioClip gameBGM;
 
     private float volumeSFX;
     private float volumeMusic;
@@ -34,6 +36,26 @@ public class SoundManager : SingletonPersistent<SoundManager> {
 
     private void Start() {
         UpdateVolume();
+
+        GameManager.Instance.OnGamePaused += OnPause;
+        GameManager.Instance.OnGameResumed += OnResume;
+    }
+
+    private void OnDestroy() {
+        GameManager.Instance.OnGamePaused -= OnPause;
+        GameManager.Instance.OnGameResumed -= OnResume;
+    }
+
+    private void OnPause() {
+        if (musicAudioSource != null) {
+            musicAudioSource.Pause();
+        }
+    }
+
+    private void OnResume() {
+        if (musicAudioSource != null) {
+            musicAudioSource.UnPause();
+        }
     }
 
     private void CreateSourcePool() {
@@ -63,14 +85,54 @@ public class SoundManager : SingletonPersistent<SoundManager> {
         mixer.SetFloat(MixerGroup.Music.ToString(), Mathf.Log10(volumeMusic) * 20);
     }
 
-    public void PlaySound() {
+    public void PlaySound(AudioClip clip) {
         if (!isMusicEnabled)
             return;
+
+        if (musicAudioSource != null) {
+            if (musicAudioSource.isPlaying) {
+                musicAudioSource.Stop();
+            }
+
+            musicAudioSource.loop = true;
+            musicAudioSource.clip = clip;
+            musicAudioSource.Play();
+        }
     }
 
-    public void PlaySFX() {
+    public void PlaySFX(AudioClip clip) {
         if (!isSFXEnabled)
             return;
+
+        AudioSource sfxSource = GetSourceFromPool();
+        sfxSource.clip = clip;
+        sfxSource.PlayOneShot(clip);
+    }
+
+    private AudioSource GetSourceFromPool() {
+        AudioSource freeSource = null;
+        foreach(GameObject obj in sourcePool) {
+            AudioSource source = obj.GetComponent<AudioSource>();
+            if (!source.isPlaying) {
+                freeSource = source;
+                break;
+            }
+        }
+
+        return freeSource;
+    }
+
+    //Temporary
+    public void PlayTitleBGM() {
+        PlaySound(titleBGM);
+    }
+
+    public void PlayGameBGM() {
+        PlaySound(gameBGM);
+    }
+
+    public void PlayBtnSFX() {
+        PlaySFX(buttonSFX);
     }
 }
 

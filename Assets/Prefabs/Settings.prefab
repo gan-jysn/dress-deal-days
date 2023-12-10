@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popupPanel: {fileID: 2977459400391005308}
   closeBtn: {fileID: 2977459401105552633}
-  closeDelay: 0.75
+  delayTime: 0.75
   toggleSFX: {fileID: 0}
   toggleMusic: {fileID: 0}
   audioSlider: {fileID: 0}

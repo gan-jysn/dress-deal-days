@@ -7,7 +7,6 @@ public class InteractionHandler : MonoBehaviour {
     [SerializeField] float raycastDistance = 10f;
     [SerializeField] MovementController movementController;
 
-    private bool isTryingToInteract = false;
     private Direction dir = Direction.Down;
     private RaycastHit2D[] hit;
 
@@ -74,6 +73,7 @@ public class InteractionHandler : MonoBehaviour {
 
         if (obj != null) {
             Debug.Log("Interact");
+            obj.GetComponent<IInteractable>().Interact();
         }
     }
 }

@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class UI_Popup : MonoBehaviour {
     [SerializeField] GameObject popupPanel;
     [SerializeField] Button closeBtn;
-    [SerializeField] float closeDelay = 1.5f;
+    [SerializeField] float delayTime = 0.75f;
+
+    public float DelayTime { get { return delayTime; } }
 
     #region Events
     public event Action OnPopupOpened;
@@ -30,13 +32,18 @@ public class UI_Popup : MonoBehaviour {
 
     //Close Panel
     public void ClosePanel() {
+        PlayBtnSFX();
         StartCoroutine(DelayClose());
     }
 
     //Adds Delay to Close for Button Animations & SFX
     private IEnumerator DelayClose() {
-        yield return new WaitForSeconds(closeDelay);
+        yield return new WaitForSeconds(delayTime);
         popupPanel.SetActive(false);
         closeBtn.interactable = true;
+    }
+
+    public void PlayBtnSFX() {
+        SoundManager.Instance.PlayBtnSFX();
     }
 }

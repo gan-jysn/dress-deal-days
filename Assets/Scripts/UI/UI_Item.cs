@@ -35,6 +35,7 @@ public class UI_Item : MonoBehaviour, IPointerClickHandler {
     }
 
     public void Select() {
+        SoundManager.Instance.PlayBtnSFX();
         OnItemSelected?.Invoke(itemData.ItemID, itemData.Type, itemData.ItemName, itemData.Description);
     }
 
