@@ -14,4 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Currency: 10000
   Items:
-  - {fileID: 11400000, guid: 0408bb8e118212d42aab59fc7d8b830c, type: 2}
+  - {fileID: 11400000, guid: 2438540c5aac3d444ae4eebfcb988d82, type: 2}
+  - {fileID: 11400000, guid: 41e04388d3f51e24b8f26467503336c9, type: 2}
+  - {fileID: 11400000, guid: 3db4877acbdb1e74fa99b78355e9cf9d, type: 2}
+  - {fileID: 11400000, guid: ba4eaa6cd7d33234baecbb3947963c85, type: 2}
+  - {fileID: 11400000, guid: 17ee91b15143ba94789f3babafba58b5, type: 2}
+  - {fileID: 11400000, guid: 1ed6f16e98a9a584c99d03a4b6924a4e, type: 2}
+  - {fileID: 11400000, guid: 1598f4c307e607247840f700c5f67d75, type: 2}
+  - {fileID: 11400000, guid: 33b3e9204dc1c4e43b48140c8f6702cb, type: 2}
+  - {fileID: 11400000, guid: 660a65eab36a058418c106ea27c5f39a, type: 2}

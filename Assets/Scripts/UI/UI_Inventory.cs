@@ -23,12 +23,17 @@ public class UI_Inventory : UI_Popup {
 
     public override void Start() {
         base.Start();
+
+        OnPopupOpened += OnPopupOpen;
         ClearItemInfo();
         InitializeInventory();
     }
 
-    public override void OnEnable() {
-        base.OnEnable();
+    private void OnDestroy() {
+        OnPopupOpened -= OnPopupOpen;
+    }
+
+    private void OnPopupOpen() {
         UpdateInventory();
 
         //Select First Item

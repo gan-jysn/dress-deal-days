@@ -187,7 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popupPanel: {fileID: 113017485553740181}
   closeBtn: {fileID: 113017485531179081}
-  closeDelay: 1.5
+  closeDelay: 0.75
   itemPrefab: {fileID: 113017485773004803}
   itemViewContainer: {fileID: 113017484799865445}
   inventoryHandler: {fileID: 0}

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 912c5f8abfb5e4a448f59119ea03f4c6, type: 3}
+  m_Name: WizardSet_Normal
+  m_EditorClassIdentifier: 
+  ItemID: 8
+  ItemName: Old Wizard Outfit
+  Description: An old two-toned wizard outfit.
+  Value: 200
+  Type: 0
+  Icon: {fileID: -1282796454, guid: 137344d72e6870441b572434eede836c, type: 3}
+  EquipType: 1
+  SpriteSheet: {fileID: -91562633, guid: 137344d72e6870441b572434eede836c, type: 3}
+  ItemPrefab: {fileID: 0}

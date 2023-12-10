@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 912c5f8abfb5e4a448f59119ea03f4c6, type: 3}
+  m_Name: ArmorSet_Purple
+  m_EditorClassIdentifier: 
+  ItemID: 3
+  ItemName: Purple Armor
+  Description: A set of armor with purple pigment.
+  Value: 400
+  Type: 0
+  Icon: {fileID: -1774752576, guid: 94134781ed170d244b2346af7487e0a0, type: 3}
+  EquipType: 1
+  SpriteSheet: {fileID: 1676090407, guid: 94134781ed170d244b2346af7487e0a0, type: 3}
+  ItemPrefab: {fileID: 0}

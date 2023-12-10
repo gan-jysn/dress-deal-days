@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,10 @@ public class UI_Popup : MonoBehaviour {
     [SerializeField] GameObject popupPanel;
     [SerializeField] Button closeBtn;
     [SerializeField] float closeDelay = 1.5f;
+
+    #region Events
+    public event Action OnPopupOpened;
+    #endregion
 
     public virtual void Start() {
         //Set Default Active Status
