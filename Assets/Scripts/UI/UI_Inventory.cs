@@ -35,11 +35,6 @@ public class UI_Inventory : UI_Popup {
 
     private void OnPopupOpen() {
         UpdateInventory();
-
-        //Select First Item
-        if (UIItems.Count > 0) {
-            UIItems[0].Select();
-        }
     }
 
     public void ClearItemInfo() {
@@ -83,6 +78,11 @@ public class UI_Inventory : UI_Popup {
                 UIItems[i].gameObject.SetActive(false);
             }
         }
+
+        //Select First Item
+        if (UIItems.Count > 0) {
+            UIItems[0].Select();
+        }
     }
 
     private void CreateItemPrefab(ItemSO itemData) {
@@ -92,7 +92,7 @@ public class UI_Inventory : UI_Popup {
         UIItems.Add(item);
         item.SetItemData(itemData);
         item.UpdateUI();
-        //Subscribe to event OnUIItemClicked to setItemInfo
+        //Subscribe to event OnUIItemClicked to SetItemInfo
         item.OnItemSelected += SetItemInfo;
     }
 
@@ -118,7 +118,7 @@ public class UI_Inventory : UI_Popup {
         switch (type) {
             case ItemType.Clothing:
                 useBtn.gameObject.SetActive(true);
-                useBtnTxt.text = "Equipt Item";
+                useBtnTxt.text = "Equip Item";
                 break;
             case ItemType.Consumable:
                 useBtn.gameObject.SetActive(true);

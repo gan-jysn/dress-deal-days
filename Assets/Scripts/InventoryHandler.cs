@@ -17,6 +17,14 @@ public class InventoryHandler : MonoBehaviour {
         return -1;
     }
 
+    public ItemSO GetPlayerItemViaID(int id) {
+        return GetItemViaID(inventory, id);
+    }
+
+    private ItemSO GetItemViaID(InventorySO inventory, int id) {
+        return inventory.GetItemViaID(id);
+    }
+
     private int GetItemIndexFromInventoryViaID(int id) {
         ItemSO item = GetItemFromInventoryViaID(id);
         if (item != null) {
