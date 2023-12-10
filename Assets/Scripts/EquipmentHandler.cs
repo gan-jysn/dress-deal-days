@@ -37,12 +37,10 @@ public class EquipmentHandler : MonoBehaviour {
 
     private void EquipClothes(EquipableItemSO item) {
         //Set Sprite Libary Asset
+        currentClothes = item;
+        Debug.Log(item.ItemName);
         if (item.itemAsset != null) {
             spriteLib.spriteLibraryAsset = item.itemAsset;
-        }
-        
-        if (clothesObject != null) {
-            Destroy(clothesObject);
         }
 
         if (item.ItemPrefab != null) {

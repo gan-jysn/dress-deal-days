@@ -35,8 +35,7 @@ public class InventorySO : ScriptableObject {
     }
 
     public void RemoveItem(ItemSO item) {
-        int itemIndex = GetItemIndexFromInventory(item);
-        Items.RemoveAt(itemIndex);
+        Items.Remove(item);
         Debug.Log(item.ItemName + " has been removed from Inventory");
     }
 
@@ -50,9 +49,14 @@ public class InventorySO : ScriptableObject {
     }
 
     public int GetItemIndexFromInventory(ItemSO item) {
-        for (int i = 0;i < Items.Count;i++) {
-            if (Items[i] == item) {
+        int i = 0;
+        Debug.Log(item.ItemID);
+        Debug.Log(Items.Count);
+        foreach (ItemSO itemSO in Items) {
+            if (itemSO.ItemID == item.ItemID) {
                 return i;
+            } else {
+                i++;
             }
         }
         return -1;

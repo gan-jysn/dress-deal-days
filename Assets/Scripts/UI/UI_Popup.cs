@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class UI_Popup : MonoBehaviour {
     [SerializeField] GameObject popupPanel;
     [SerializeField] Button closeBtn;
-    [SerializeField] float delayTime = 0.75f;
+    [SerializeField] float delayTime = 0.5f;
+    [SerializeField] bool isInactiveStart = true;
 
     public float DelayTime { get { return delayTime; } }
 
@@ -17,7 +18,11 @@ public class UI_Popup : MonoBehaviour {
 
     public virtual void Start() {
         //Set Default Active Status
-        popupPanel.SetActive(false);
+        if (isInactiveStart) {
+            popupPanel.SetActive(false);
+        } else {
+            popupPanel.SetActive(true);
+        }
     }
 
     public virtual void OnEnable() {

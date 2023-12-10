@@ -56,7 +56,7 @@ public class UI_Inventory : UI_Popup {
         }
     }
 
-    private void UpdateInventory() {
+    public void UpdateInventory() {
         int inventorySize = inventoryHandler.Items.Count;
 
         //Update Data

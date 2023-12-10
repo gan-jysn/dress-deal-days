@@ -6,6 +6,7 @@ using UnityEngine;
 public class InventoryHandler : MonoBehaviour {
     [SerializeField] InventorySO inventory;
     [SerializeField] EquipmentHandler equipmentHandler;
+    [SerializeField] UI_Inventory inventoryUI;
 
     public int Currency { get { return inventory.Currency; } }
     public List<ItemSO> Items { get { return inventory.Items; } }
@@ -15,9 +16,10 @@ public class InventoryHandler : MonoBehaviour {
     #endregion
 
     private void Start() {
-        equipmentHandler.OnEquipClothing += () => {
-            inventory.RemoveItem(equipmentHandler.CurrentClothes);
-        };
+        /*equipmentHandler.OnEquipClothing += () => {
+            ItemSO item = (ItemSO) equipmentHandler.CurrentClothes;
+            inventory.RemoveItem(item);
+        };*/
     }
 
     public ItemSO GetPlayerItemViaID(int id) {
@@ -45,7 +47,7 @@ public class InventoryHandler : MonoBehaviour {
     }
 
     public void SellItem(ItemSO item) {
-        inventory.RemoveItem(item);
+        RemoveItem(item);
         AddCurrency(item.Value);
     }
 
@@ -57,6 +59,12 @@ public class InventoryHandler : MonoBehaviour {
     public void EquiptItem(ItemSO item) {
         if (equipmentHandler != null) {
             equipmentHandler.EquiptItem(item);
+            RemoveItem(item);
         }
+    }
+
+    private void RemoveItem(ItemSO item) {
+        inventory.RemoveItem(item);
+        inventoryUI.UpdateInventory();
     }
 }
