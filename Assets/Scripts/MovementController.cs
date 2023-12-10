@@ -13,6 +13,7 @@ public class MovementController : MonoBehaviour {
     private bool isRunEnabled = false;
     private Vector2 moveVector = Vector2.zero;
     private float movementSpeed = 0;
+    private LastDirection lastDirection = LastDirection.Down;
 
     public bool IsControlsEnabled { get { return isControlsEnabled; } }
     public float MovementSpeed { get { return movementSpeed; } }
@@ -20,6 +21,7 @@ public class MovementController : MonoBehaviour {
     public Vector2 MoveVector { get { return moveVector; } }
 
     #region Events
+    public event Action<LastDirection> OnSetLastDirection;
     public event Action OnJump;
     public event Action<bool> OnRunToggle;
     #endregion
@@ -75,7 +77,26 @@ public class MovementController : MonoBehaviour {
     }
 
     private void OnMovementEnd() {
+        CheckLastDirection();
         moveVector = Vector2.zero;
+    }
+
+    private void CheckLastDirection() {
+        if (moveVector.x == 0) {
+            if (moveVector.y > 0) {
+                lastDirection = LastDirection.Up;
+            } else {
+                lastDirection = LastDirection.Down;
+            }
+        } else if (moveVector.y == 0) {
+            if (moveVector.x > 0) {
+                lastDirection = LastDirection.Right;
+            } else {
+                lastDirection = LastDirection.Left;
+            }
+        }
+
+        OnSetLastDirection?.Invoke(lastDirection);
     }
 
     private void Jump() {
@@ -106,4 +127,11 @@ public class MovementController : MonoBehaviour {
     public void EnableControls() {
         isControlsEnabled = true;
     }
+}
+
+public enum LastDirection {
+    Up,
+    Down,
+    Left,
+    Right
 }

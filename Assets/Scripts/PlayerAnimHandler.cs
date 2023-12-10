@@ -33,6 +33,7 @@ public class PlayerAnimHandler : MonoBehaviour {
 
     private void AddEventCallbacks() {
         if (movementController != null) {
+            movementController.OnSetLastDirection += SetDirection;
             movementController.OnJump += TriggerJump;
             movementController.OnRunToggle += SetRunToggleValue;
         }
@@ -40,9 +41,15 @@ public class PlayerAnimHandler : MonoBehaviour {
 
     private void RemoveEventCallbacks() {
         if (movementController != null) {
+            movementController.OnSetLastDirection += SetDirection;
             movementController.OnJump -= TriggerJump;
             movementController.OnRunToggle -= SetRunToggleValue;
         }
+    }
+
+    private void SetDirection(LastDirection dir) {
+        float index = (float) dir;
+        animator.SetFloat("LastDirection", index);
     }
 
     private void TriggerJump() {
